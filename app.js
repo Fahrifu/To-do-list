@@ -79,7 +79,29 @@ taskList.addEventListener('click', (e) => {
     }
 
     // load tasks from localStorage
+    function loadTasks() {
+        const saved = localStorage.getItem('tasks');
+        if (!saved) return;
 
+        const tasks = JSON.parse(saved);
+        tasks.forEach(task => {
+            const taskDiv = document.createElement('div');
+            taskDiv.classList.add('task');
+
+            taskDiv.innerHTML = `
+            <input type="checkbox" class="completeCheck" ${task.completed ? 'checked' : ''} />
+            <span class="taskText">${task.text}</span>
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>
+            `;
+
+            if (task.completed) {
+                taskDiv.querySelector('.taskText').classList.add('completed');
+            }
+
+            taskList.appendChild(taskDiv);
+        });
+    }
 
 });
 

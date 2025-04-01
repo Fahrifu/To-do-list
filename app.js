@@ -53,10 +53,18 @@ taskList.addEventListener('click', (e) => {
 
             taskDiv.replaceChild(input, taskTextSpan);
             target.textContent = 'Save';
+        } else {
+            // Save Edit
+            const input = taskDiv.querySelector('.editInput');
+            const newSpan = document.createElement('span');
+            newSpan.className = 'taskText';
+            newSpan.textContent = input.value;
+
+            taskDiv.replaceChild(newSpan, input);
+            target.textContent = 'Edit';
         }
     }
 
-    // Save Edit
 
     });
 });

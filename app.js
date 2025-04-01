@@ -41,8 +41,20 @@ taskList.addEventListener('click', (e) => {
     }
 
     // Edit Task
+    if (target.classList.contains('editBtn')) {
+        const taskTextSpan = taskDiv.querySelector('.taskText');
 
-    // Switch to edit Mode
+        if (target.textContent === 'Edit') {
+            // Switch to edit Mode
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = taskTextSpan.textContent;
+            input.className = 'editInput';
+
+            taskDiv.replaceChild(input, taskTextSpan);
+            target.textContent = 'Save';
+        }
+    }
 
     // Save Edit
 

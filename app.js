@@ -66,10 +66,20 @@ taskList.addEventListener('click', (e) => {
     }
     });
     // save tasks to localStorage
-
+    function saveTasks() {
+        const tasks = [];
+        document.querySelectorAll('.task').forEach(taskDiv => {
+            const textEl = taskDiv.querySelector('.taskText');
+            const isCompleted = taskDiv.querySelector('.completeCheck').checked;
+            if (textEl) {
+                tasks.push({ text: textEl.textContent, completed: isCompleted});
+            }
+        });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
 
     // load tasks from localStorage
-    
+
 
 });
 

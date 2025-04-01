@@ -4,40 +4,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const addBtn = document.getElementById('addBtn');
     const taskList = document.getElementById('taskList');
 
-// Task Handler
+    loadTasks();
+
+// Add tasks
 addBtn.addEventListener('click', () => {
     let taskText = taskInput.value.trim();
     if (taskText === '') return;
 
-    // Task Element
-    const taskDiv = document.createElement('div');
-    taskDiv.classList.add('task');
-
-    taskDiv.innerHTML = `
-     <input type="checkbox" class="completeCheck" />
-     <span class="taskText">${taskText}</span>
-     <button class="editBtn">Edit</button>
-     <button class="deleteBtn">Delete</button>
-    `;
-
-    taskList.appendChild(taskDiv)
+    addTaskToDOM(taskText, false);
     taskInput.value = '';
-})
+    saveTasks();
+});
 
 // CheckBoxes & Buttons
 taskList.addEventListener('click', (e) => {
     const target = e.target;
     const taskDiv = target.closest('.task');
 
+    if (!taskDiv) return;
+
     // Toggle Complete
     if (target.classList.contains('completeCheck')) {
         const taskText = taskDiv.querySelector('.taskText');
         taskText.classList.toggle('completed');
+        saveTasks();
     }
 
     // Delete Task
     if (target.classList.contains('deleteBtn')) {
         taskDiv.remove();
+        saveTasks();
     }
 
     // Edit Task
@@ -62,9 +58,27 @@ taskList.addEventListener('click', (e) => {
 
             taskDiv.replaceChild(newSpan, input);
             target.textContent = 'Edit';
+            saveTasks();
+            }
         }
-    }
     });
+
+    //Dom function
+    function addTaskToDOM(text, completed) {
+        const taskDiv = document.createElement('div');
+        taskDiv.classList.add('task');
+
+        taskDiv.innerHTML = `
+            <input type="checkbox" class="completeCheck" ${completed ? 'checked' : ''} />
+            <span class="taskText ${completed ? 'completed' : ''}">${text}</span>
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>
+            `;
+
+        taskList.appendChild(taskDiv);
+    }
+
+
     // save tasks to localStorage
     function saveTasks() {
         const tasks = [];
@@ -84,23 +98,7 @@ taskList.addEventListener('click', (e) => {
         if (!saved) return;
 
         const tasks = JSON.parse(saved);
-        tasks.forEach(task => {
-            const taskDiv = document.createElement('div');
-            taskDiv.classList.add('task');
-
-            taskDiv.innerHTML = `
-            <input type="checkbox" class="completeCheck" ${task.completed ? 'checked' : ''} />
-            <span class="taskText">${task.text}</span>
-            <button class="editBtn">Edit</button>
-            <button class="deleteBtn">Delete</button>
-            `;
-
-            if (task.completed) {
-                taskDiv.querySelector('.taskText').classList.add('completed');
-            }
-
-            taskList.appendChild(taskDiv);
-        });
+        tasks.forEach(task => addTaskToDOM(task.text, task.completed));
     }
 
 });

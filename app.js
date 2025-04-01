@@ -1,12 +1,13 @@
 // DOM elements
-const taskInput = document.getElementById('taskInput');
-const addBtn = document.getElementById('addBtn');
-const taskList = document.getElementById('TaskList'); 
+document.addEventListener('DOMContentLoaded', () => {
+    const taskInput = document.getElementById('taskInput');
+    const addBtn = document.getElementById('addBtn');
+    const taskList = document.getElementById('taskList');
 
 // Task Handler
 addBtn.addEventListener('click', () => {
-    const taskText = taskInput.value.trim();
-    if (taskText = '') return;
+    let taskText = taskInput.value.trim();
+    if (taskText === '') return;
 
     // Task Element
     const taskDiv = document.createElement('div');
@@ -15,12 +16,12 @@ addBtn.addEventListener('click', () => {
     taskDiv.innerHTML = `
      <input type="checkbox" class="completeCheck" />
      <span class="taskText">${taskText}</span>
-     <button class"editBtn">Edit</button>
-     <button class"deleteBtn">Delete</button>
+     <button class="editBtn">Edit</button>
+     <button class="deleteBtn">Delete</button>
     `;
 
     taskList.appendChild(taskDiv)
-    taskInput.value = ' ';
+    taskInput.value = '';
 })
 
 // CheckBoxes & Buttons
@@ -38,5 +39,9 @@ taskList.addEventListener('click', (e) => {
     if (target.classList.contains('deleteBtn')) {
         taskDiv.remove();
     }
+
+    
+
+    });
 });
 

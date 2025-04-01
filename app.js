@@ -64,8 +64,12 @@ taskList.addEventListener('click', (e) => {
             target.textContent = 'Edit';
         }
     }
-
-
     });
+    // save tasks to localStorage
+
+
+    // load tasks from localStorage
+    
+
 });
 

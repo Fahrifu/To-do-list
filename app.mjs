@@ -24,7 +24,19 @@ addBtn.addEventListener('click', () => {
 })
 
 // CheckBoxes & Buttons
+taskList.addEventListener('click', (e) => {
+    const target = e.target;
+    const taskDiv = target.closest('.task');
 
-// Toggle Complete
+    // Toggle Complete
+    if (target.classList.contains('completeCheck')) {
+        const taskText = taskDiv.querySelector('.taskText');
+        taskText.classList.toggle('completed');
+    }
 
-// Delete Task
+    // Delete Task
+    if (target.classList.contains('deleteBtn')) {
+        taskDiv.remove();
+    }
+});
+

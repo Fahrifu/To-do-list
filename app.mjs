@@ -23,3 +23,8 @@ addBtn.addEventListener('click', () => {
     taskInput.value = ' ';
 })
 
+// CheckBoxes & Buttons
+
+// Toggle Complete
+
+// Delete Task

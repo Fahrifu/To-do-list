@@ -40,7 +40,11 @@ taskList.addEventListener('click', (e) => {
         taskDiv.remove();
     }
 
-    
+    // Edit Task
+
+    // Switch to edit Mode
+
+    // Save Edit
 
     });
 });

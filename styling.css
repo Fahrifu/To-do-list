@@ -7,6 +7,43 @@ body {
     color: #333;
 }
 
+h1 {
+    text-align: center;
+    color: #222;
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[type="text"] {
+    border-color: #007bff;
+    box-shadow: 0 0 3px #007bff55;
+}
+
+#addBtn {
+    padding: 10px 16px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-left: 10px;
+}
+
+#addBtn:hover {
+    background-color: #0056b3;
+}
+
 .task {
     background: white;
     padding: 10px 15px;

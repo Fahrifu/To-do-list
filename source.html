@@ -1,14 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta>
-        <meta>
-        <title>
-            <style>
-
-            </style>
-        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+        <style>
+            body { font-family: sans-serif; padding: 2rem; max-width: 500px; margin: auto; }
+            .task {display: flex; justify-content: space-between; margin-bottom: 10px; }
+            .complete {text-decoration: line-through; color: gray;}
+            button { margin-left: 5px;}
+        </style>
     </head>
     <body>
-        
+        <h1> My TO-DO List</h1>
+
+        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <button id="addBtn">Add Task</button>
+
+        <div id="taskList"></div>
+
+
+        <script src="app.mjs"></script>
     </body>
 </html>
